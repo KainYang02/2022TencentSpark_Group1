@@ -19,7 +19,9 @@ print(np.allclose(c.matrix(), d.matrix()))
 c.draw(output='mpl')
 ```
 
+<center>
 ![](./swap_by_cnot.png)
+</center>
 
 #### 用 CNOT 门和 Rz 门实现 Rzz 门
 
@@ -40,7 +42,7 @@ $$
 \end{pmatrix}.
 $$
 
-感性理解，$|00\>,|11\>$ 对应一位的 $|0\>$，$|01\>,|10\>$ 对应 $|1\>$，这可以通过控制非做到。
+感性理解，$|00\rangle,|11\rangle$ 对应一位的 $|0\rangle$，$|01\rangle,|10\rangle$ 对应 $|1\rangle$，这可以通过控制非做到。
 
 ```python
 c = tc.Circuit(2)
@@ -61,8 +63,9 @@ print(np.allclose(c.matrix(), d.matrix()))
 c.draw(output='mpl')
 ```
 
-
+<center>
 ![](./rzz_by_cnot_rz.png)
+</center>
 
 容易计算验证。
 
