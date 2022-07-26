@@ -107,7 +107,7 @@ I&I\\
 I&-I\\
 \end{pmatrix}
 \begin{pmatrix}
-s\\
+S\\
 0
 \end{pmatrix}=\frac12
 \begin{pmatrix}
@@ -116,7 +116,7 @@ S-US
 \end{pmatrix}.
 $$
 
-即测量 $\hat Z$ 关于 $\dfrac12
+即测量 $\hat Z$ 关于 $\displaystyle\frac12
 \begin{pmatrix}
 S+US\\
 S-US
