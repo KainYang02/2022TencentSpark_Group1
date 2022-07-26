@@ -19,9 +19,7 @@ print(np.allclose(c.matrix(), d.matrix()))
 c.draw(output='mpl')
 ```
 
-<center>
 ![](./swap_by_cnot.png)
-</center>
 
 #### 用 CNOT 门和 Rz 门实现 Rzz 门
 
@@ -33,6 +31,7 @@ R_{zz}(\theta)&=\exp\left(-i\theta/2\hat Z\otimes\hat Z\right).
 $$
 
 简单计算知
+
 $$
 \hat Z\otimes\hat Z=\begin{pmatrix}
 1&0&0&0\\
@@ -63,9 +62,7 @@ print(np.allclose(c.matrix(), d.matrix()))
 c.draw(output='mpl')
 ```
 
-<center>
 ![](./rzz_by_cnot_rz.png)
-</center>
 
 容易计算验证。
 
@@ -93,11 +90,8 @@ hmtest(
 )
 ```
 
-理解线路图，其实际上计算的是
-$$
-v^{\mathsf T}\hat Zv.
-$$
-其中
+理解线路图，其实际上计算的是 $v^{\mathsf T}\hat Zv$，其中
+
 $$
 v=\frac12
 \begin{pmatrix}
@@ -121,6 +115,7 @@ S+US\\
 S-US
 \end{pmatrix}.
 $$
+
 即测量 $\hat Z$ 关于 $\dfrac12
 \begin{pmatrix}
 S+US\\
