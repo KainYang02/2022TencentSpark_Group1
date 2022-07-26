@@ -1,0 +1,41 @@
+K=tc.set_backend("tensorflow")
+tc.set_dtype("complex128")
+def expectation_of_matrix(a0,a1,theta):
+    v_0=np.array([[1],[0]])
+    if a0==0:
+        P=np.array([[1,0],[0,1]])
+    elif a0==1:
+        P=np.array([[0,1],[1,0]])
+    elif a0==2:
+        P=np.array([[0,-1j],[1j,0]])
+    elif a0==3:
+        P=np.array([[1,0],[0,-1]])
+    P=tc.array_to_tensor(P)
+    if a1==0:
+        Q=np.array([[1,0],[0,1]])
+    elif a1==1:
+        Q=np.array([[0,1],[1,0]])
+    elif a1==2:
+        Q=np.array([[0,-1j],[1j,0]])
+    elif a1==3:
+        Q=np.array([[1,0],[0,-1]])
+    Q=tc.array_to_tensor(Q)
+    v_theta=tc.backend.expm(0.5*1j*theta*P)@v_0
+    intermediate=Q@v_theta
+    return K.real((K.transpose(K.conj(v_theta))@intermediate)[0][0])
+
+def found_min_f(step,x_0,f):
+    f_min=f(1,2,x_0)
+    diff=K.grad(f,argnums=2)(1,2,x_0)
+    while abs(diff)>=1e-3:
+        f_temp=f(1,2,x_0-step*diff)
+        if f_temp<f_min:
+            x_0=x_0-step*diff
+            f_min=f_temp
+        else:
+            step=step/2
+        diff=K.grad(f,argnums=2)(1,2,x_0)
+    return f_min,x_0
+    
+f_min,x_0=found_min_f(0.1,tc.array_to_tensor(0.25*np.pi),expectation_of_matrix)
+print(f_min,x_0)
